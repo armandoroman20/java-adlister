@@ -5,20 +5,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello")
-public class HelloWorldServlet extends HttpServlet {
+@WebServlet(name = "ResumeServlet", urlPatterns = "/resume")
+
+public class ResumeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
+
+        String content = "<h1>My Resume</h1>";
+        content += "<p>I write a lot of code. Check my GitHub</p>";
+        content += "<hr><br>";
+        content += "<a href='https://github.com/'>My GitHub Profile</a><br>";
+        content += "<a href='/portfolio'>My Portfolio</a>";
+
         PrintWriter out = response.getWriter();
+        out.println(content);
 
-        String name = request.getParameter("name");
-
-        if(name == null){
-            out.println("<h1> Hello World! </h1>");
-        }
-        else {
-            out.println("<h1> Hello " + name + "!</h1>");
-        }
     }
 }
+
+
+
+
